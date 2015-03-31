@@ -219,7 +219,7 @@ Bread = (function(){
 			this.life = '',
 			this.context = '',
 			this.addIt = function( thing ) {
-
+			/*Add an element to the environment*/
 				var env = this.enviroment_element;
 
 				if( typeof thing != 'object' ) {
@@ -246,7 +246,7 @@ Bread = (function(){
 				set_of_things[id_ob] = thing;
 			},
 			this.removeIt = function( thing ) {
-
+			/*Remove an element from the environment*/
 				if( typeof thing != 'object' ) {
 
 					console.error('Incorrect input argument in remove-it!');
@@ -259,7 +259,7 @@ Bread = (function(){
 				}
 			},
 			this.render = function() {
-
+			/*Render all environment elements*/
 				var set = set_of_things,
 					thi = '';
 				for( var ind in set ){
@@ -272,7 +272,7 @@ Bread = (function(){
 				}
 			},
 			this.animation = function( callback, frat ) {
-
+			/*Animate the environment*/
 				if( typeof callback != 'function' ) {
 					console.error('Invalid input argument in animation!');
 					return false;
