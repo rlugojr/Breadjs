@@ -1353,7 +1353,7 @@ Bread = (function(){
 				return ini + fin;
 			},
 			shuffle : function( arr ) {
-
+			/*Shuffle a list*/
 				var elm = 0,
 					stack = [];
 				while ( arr.length > 0 ) {
