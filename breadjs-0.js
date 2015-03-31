@@ -2,7 +2,7 @@
  * BreadJS JavaScript HTML5 Canvas Library v - 0.0.1
  * Copyright (c) 2015 Juan Camilo Gutierrez Ruiz
  * Licensed MIT
- * Date: 2015-02-20
+ * Date: 2015-03-30
  *!--------------------------------------------------!
  */
  
