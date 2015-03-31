@@ -408,7 +408,7 @@ Bread = (function(){
 			return Thing.methods.init_object;
 		},
 		circle : function( rad , fig ) {
-
+		/*Creating a circle type*/
 			if( typeof rad != 'number'){
 				console.error('Incorrect data assignment');
 				return false;
