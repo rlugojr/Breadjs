@@ -2,7 +2,7 @@
  * BreadJS JavaScript HTML5 Canvas Library v - 0.0.1
  * Copyright (c) 2015 Juan Camilo Gutierrez Ruiz
  * Licensed MIT
- * Date: 2015-03-30
+ * Date: 2015-02-20
  *!--------------------------------------------------!
  */
  
@@ -219,7 +219,7 @@ Bread = (function(){
 			this.life = '',
 			this.context = '',
 			this.addIt = function( thing ) {
-			/*Add an element to the environment*/
+
 				var env = this.enviroment_element;
 
 				if( typeof thing != 'object' ) {
@@ -246,7 +246,7 @@ Bread = (function(){
 				set_of_things[id_ob] = thing;
 			},
 			this.removeIt = function( thing ) {
-			/*Remove an element from the environment*/
+
 				if( typeof thing != 'object' ) {
 
 					console.error('Incorrect input argument in remove-it!');
@@ -259,7 +259,7 @@ Bread = (function(){
 				}
 			},
 			this.render = function() {
-			/*Render all environment elements*/
+
 				var set = set_of_things,
 					thi = '';
 				for( var ind in set ){
@@ -272,7 +272,7 @@ Bread = (function(){
 				}
 			},
 			this.animation = function( callback, frat ) {
-			/*Animate the environment*/
+
 				if( typeof callback != 'function' ) {
 					console.error('Invalid input argument in animation!');
 					return false;
@@ -408,7 +408,7 @@ Bread = (function(){
 			return Thing.methods.init_object;
 		},
 		circle : function( rad , fig ) {
-		/*Creating a circle type*/
+
 			if( typeof rad != 'number'){
 				console.error('Incorrect data assignment');
 				return false;
@@ -682,7 +682,7 @@ Bread = (function(){
 				this.speed -= friction;
 				
 			},
-			this.follow = function() {
+			this.follow = function( objs ) {
 
 				var xcomp = -0.5, 
 		            ycomp = -0.5, 
@@ -723,17 +723,18 @@ Bread = (function(){
 
 		        xtemporalobj = xobjective;
 		        ytemporalobj = yobjective;
-		        
+		        console.log(objs)
 					if( dist > 0 ) {
 
 		               	xspeed = ( xgoes * Math.cos( this.angle ) * this.speed );
 						yspeed = ( ygoes * Math.sin( this.angle ) * this.speed );
+						
+		                for ( ind in objs ) {
 
-		                for ( ind in arguments ) {
+		                    xobject1 = objs[ ind ].x, yobject1 = objs[ ind ].y;
 
-		                    xobject1 = arguments[ ind ].x, yobject1 = arguments[ ind ].y;
-							ewidth = arguments[ ind ].draw_object[ 'width' ] || 0;
-							eheight = arguments[ ind ].draw_object[ 'height' ] || 0;
+							ewidth = objs[ ind ].draw_object[ 'width' ] || 0;
+							eheight = objs[ ind ].draw_object[ 'height' ] || 0;
 
 		                    xcomp = this.x + ( xgoes * size );
 		                    ycomp = this.y + ( ygoes * size );
@@ -1353,7 +1354,7 @@ Bread = (function(){
 				return ini + fin;
 			},
 			shuffle : function( arr ) {
-			/*Shuffle a list*/
+
 				var elm = 0,
 					stack = [];
 				while ( arr.length > 0 ) {

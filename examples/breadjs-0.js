@@ -682,7 +682,7 @@ Bread = (function(){
 				this.speed -= friction;
 				
 			},
-			this.follow = function() {
+			this.follow = function( objs ) {
 
 				var xcomp = -0.5, 
 		            ycomp = -0.5, 
@@ -715,11 +715,11 @@ Bread = (function(){
 					detery = 0,
 		            k1 = 1, 
 		            k2 = 2,
-		            size = ( this.draw_object['width'] > this.draw_object['height'] ) ? this.draw_object['width'] : this.draw_object['height']; 
+		            size = ( this.draw_object['width'] < this.draw_object['height'] ) ? this.draw_object['width'] : this.draw_object['height']; 
 		            size = this.draw_object['radius'] || size;
 
 		        if ( this.draw_object['figure'] == 'sprite' )
-		        	size = ( this.draw_object['swidth'] > this.draw_object['sheight'] ) ? this.draw_object['swidth'] : this.draw_object['sheight'];
+		        	size = ( this.draw_object['swidth'] < this.draw_object['sheight'] ) ? this.draw_object['swidth'] : this.draw_object['sheight'];
 
 		        xtemporalobj = xobjective;
 		        ytemporalobj = yobjective;
@@ -729,11 +729,12 @@ Bread = (function(){
 		               	xspeed = ( xgoes * Math.cos( this.angle ) * this.speed );
 						yspeed = ( ygoes * Math.sin( this.angle ) * this.speed );
 
-		                for ( ind in arguments ) {
+		                for ( ind in objs ) {
 
-		                    xobject1 = arguments[ ind ].x, yobject1 = arguments[ ind ].y;
-							ewidth = arguments[ ind ].draw_object[ 'width' ] || 0;
-							eheight = arguments[ ind ].draw_object[ 'height' ] || 0;
+		                    xobject1 = objs[ ind ].x, yobject1 = objs[ ind ].y;
+		                    
+							ewidth = objs[ ind ].draw_object[ 'width' ] || 0;
+							eheight = objs[ ind ].draw_object[ 'height' ] || 0;
 
 		                    xcomp = this.x + ( xgoes * size );
 		                    ycomp = this.y + ( ygoes * size );
