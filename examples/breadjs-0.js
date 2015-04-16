@@ -106,7 +106,7 @@ Bread = (function(){
 				linecolor = draw_object['line-color'] || '#000';
 			/*Numeric data type*/
 			var radius = 0,
-				angle = 0,
+				//angle = 0,
 				sangle = 0,
 				eangle = 0,
 				counterclock = false,
@@ -114,7 +114,7 @@ Bread = (function(){
 				height = drawing['height'],
 				swidth = drawing['swidth'],
 				sheight = drawing['sheight'],
-				angle = drawing['angle'];
+				angle = drawing['angle'] || 0;
 				x = x,
 				y = y,
 				sx = drawing['sx'] || 0,
@@ -674,12 +674,14 @@ Bread = (function(){
 	            alfa = xgoes * alfa;
 	            xobjective = xob;
 	            yobjective = yob;
+		        this.draw_object[ 'angle' ] = this.angle
 			},
 			this.move = function() {
 
 				this.x += this.speed * Math.cos( this.angle );
 				this.y += this.speed * Math.sin( this.angle );
 				this.speed -= friction;
+				this.draw_object[ 'angle' ] = this.angle
 				
 			},
 			this.follow = function( objs , sz ) {
@@ -729,7 +731,7 @@ Bread = (function(){
 
 		               	xspeed = ( xgoes * Math.cos( this.angle ) * this.speed );
 						yspeed = ( ygoes * Math.sin( this.angle ) * this.speed );
-
+						
 		                for ( ind in objs ) {
 
 		                    xobject1 = objs[ ind ].x, yobject1 = objs[ ind ].y;
@@ -797,6 +799,8 @@ Bread = (function(){
 			                    dodge = false;
 			            }
 		            }
+		            this.draw_object[ 'angle' ] = this.angle
+		            
 			},
 			this.shapeCollision = function( objs ) {
 
