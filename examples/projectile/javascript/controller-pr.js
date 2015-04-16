@@ -28,7 +28,7 @@ enviroment.mousedownCanvas(function( event ) {
 	}))
 	p = projectiles.length
 	enviroment.addIt( projectiles[ p -1 ] )
-	projectiles[ p -1 ].impulse( 3 , angle , 0.0 )
+	projectiles[ p -1 ].impulse( -(angle/Math.abs(angle)) * 3 , angle , 0.0 )
 })
 enviroment.addIt( background )
 enviroment.animation(function() {
