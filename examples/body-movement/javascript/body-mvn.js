@@ -6,19 +6,11 @@ var env = Bread.setEnvironment({
 	'height' : 480
 });
 var bird = Bread.createThing({
-	'x' : 100,
-	'y' : 250
+	'x' : 5,
+	'y' : 5
 
 });
 bird.setSprite({
-	/*'src' : 'img/bird.png',
-	'width' : 531,
-	'height' : 304,
-	'frames' : 14,
-	'wcut' : 110,
-	'hcut' : 100,
-	'sx' : 2,
-	'sy' : 2*/
 	'src' : 'img/blue_bird.png',
 	'width' : 256,
 	'height' : 256,
@@ -29,20 +21,21 @@ bird.setSprite({
 	'sy' : 1
 });
 /*var circle = Bread.createThing({
-	'x' : 100,
-	'y' : 250,
+	'x' : 5,
+	'y' : 5,
 	'solid-circle' : 10,
 	'fill-color':'#0000FF'
 })*/
 
 rects = [];
+regionsx = [12,170,340,410]
+regionsy = [12,120,240,310]
+for (var i = 0,x = 0,y = 0, rx = 0, ry = 0, width = 0,height = 0; i < 12; i++) {
 
-for (var i = 0,x = 0,y = 0,width = 0,height = 0; i < 12; i++) {
-
-	x = Bread.random(0,700);
-	y = Bread.random(0,440);
-	width = Bread.random(0,170);
-	height = Bread.random(0,120);
+	x = Bread.randomInPortions(regionsx[rx],regionsx[ry]);
+	y = Bread.randomInPortions(10,440);
+	width = Bread.random(20,170);
+	height = Bread.random(20,120);
 
 	rects.push(Bread.createThing({	
 			'x' : x,
@@ -60,6 +53,7 @@ env.mousedownCanvas(function (event) {
     var recuadro= this.getBoundingClientRect();
     xob=(event.clientX - Math.round(recuadro.left));
     yob=(event.clientY - Math.round(recuadro.top));
+    
     if( xob < bird.x){
 		bird.initialFrame( 0 )
 		bird.endFrame( 3 )
@@ -78,7 +72,7 @@ env.animation(function() {
 
 	bird.animateSprite();
 	
-	bird.follow(rects , 20)
+	bird.follow(rects , 12)
 	env.render();
 
 },1000/20)

@@ -724,7 +724,7 @@ Bread = (function(){
 		            
 		        xtemporalobj = xobjective;
 		        ytemporalobj = yobjective;
-		        
+		        	
 					if( dist > 0 ) {
 
 		               	xspeed = ( xgoes * Math.cos( this.angle ) * this.speed );
@@ -1389,10 +1389,44 @@ Bread = (function(){
 			},
 			random : function( ini , fin ) {
 
+				if( isNaN(ini) ){
+
+					console.error('Incorrect data type sent in random')
+					return false;
+				}
+				if( isNaN(fin) ){
+
+					console.error('Incorrect data type sent in random')
+					return false;
+				}
+
 				var number = Math.random();
 				fin -= ini;
 				fin *= number;
 				return ini + fin;
+			},
+			randomInPortions : function( ini , fin ) {
+
+				if( typeof ini !== 'object' ){
+
+					console.error('Incorrect data type sent in random-in-portions')
+					return false;
+				}
+				if( typeof fin !== 'object' ){
+
+					console.error('Incorrect data type sent in random-in-portions')
+					return false;
+				}
+				if( fin.length != ini.length ){
+
+					console.error('Incorrect missmatch of array length in random-in-portions')
+					return false;
+				}
+				var pos = Math.round( Math.random() * ( ini.length - 1 ) ),
+					number = Math.random();
+				fin[pos] -= ini[pos];
+				fin[pos] *= number;
+				return ini[pos] + fin[pos];
 			},
 			shuffle : function( arr ) {
 

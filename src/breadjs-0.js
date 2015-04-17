@@ -524,7 +524,10 @@ Bread = (function(){
 				closeness = 0.9,
 				closenessb = 0.9,
 				sprframe = 0,
+				initframe = 0,
 				friction = 0,
+				initfrx = 0,
+				initfry = 0,
 				queuevel = [];
 			/*Visible object*/
 			this.x  =  0,
@@ -718,15 +721,10 @@ Bread = (function(){
 		            k1 = 1, 
 		            k2 = 2,
 		            size = sz || this.draw_object['radius'] || 0;
-		            /*size = ( this.draw_object['width'] < this.draw_object['height'] ) ? this.draw_object['width'] : this.draw_object['height']; 
-		            size = this.draw_object['radius'] || size;
-
-		        if ( this.draw_object['figure'] == 'sprite' )
-		        	size = ( this.draw_object['swidth'] < this.draw_object['sheight'] ) ? this.draw_object['swidth'] : this.draw_object['sheight'];*/
-
+		            
 		        xtemporalobj = xobjective;
 		        ytemporalobj = yobjective;
-		        
+		        	
 					if( dist > 0 ) {
 
 		               	xspeed = ( xgoes * Math.cos( this.angle ) * this.speed );
@@ -1189,7 +1187,45 @@ Bread = (function(){
 				this.draw_object['angle'] = obj['angle'] || obj['deg'] * torad || 0;
 				this.draw_object['swidth'] = obj['swidth'] || obj['width'];
 				this.draw_object['sheight'] = obj['sheight'] || obj['height'];
-			},this.setSprite = function( obj ) {
+			},
+			this.initialFrame = function( fr ) {
+
+				if(this.draw_object['figure'] != 'sprite'){
+					console.error('This is not a Sprite in display-row')
+					return false
+				}
+				if(isNaN(fr)){
+					console.error('This frame must be a number in display-row')
+					return false
+				}
+				var columns = this.draw_object['width'] / this.draw_object['swidth'], 
+					rows =  this.draw_object['height'] / this.draw_object['sheight'],
+					sx = this.draw_object['sx'],
+					sy = this.draw_object['sy'];
+
+				initfrx = ( fr % columns ) * ( this.draw_object['swidth'] )
+				initfry = Math.floor( fr / rows ) * ( this.draw_object['sheight'] )
+				/*this.draw_object['sx'] = ( initfrx + 1 );
+				this.draw_object['sy'] = initfry*/
+				this.draw_object['sxi'] = ( initfrx );
+				this.draw_object['syi'] = initfry
+				sprframe = fr;
+				initframe = fr;
+				
+			},
+			this.endFrame = function( fr ) {
+
+				if(this.draw_object['figure'] != 'sprite'){
+					console.error('This is not a Sprite in display-row')
+					return false
+				}
+				if(isNaN(fr)){
+					console.error('This frame must be a number in display-row')
+					return false
+				}
+				this.draw_object['frames'] = fr;
+			},
+			this.setSprite = function( obj ) {
 
 				if( typeof obj != 'object'){
 					console.error('Invalid input argument in set-sprite');
@@ -1260,7 +1296,7 @@ Bread = (function(){
         		if( sprframe >= frames ) { 
 					sx = this.draw_object['sxi']; 
 					sy = this.draw_object['syi']; 
-					sprframe = 0;
+					sprframe = initframe;
 				}
 			    if( anm ){
 			        this.draw_object['sx'] = sx;
@@ -1353,10 +1389,44 @@ Bread = (function(){
 			},
 			random : function( ini , fin ) {
 
+				if( isNaN(ini) ){
+
+					console.error('Incorrect data type sent in random')
+					return false;
+				}
+				if( isNaN(fin) ){
+
+					console.error('Incorrect data type sent in random')
+					return false;
+				}
+
 				var number = Math.random();
 				fin -= ini;
 				fin *= number;
 				return ini + fin;
+			},
+			randomInPortions : function( ini , fin ) {
+
+				if( typeof ini !== 'object' ){
+
+					console.error('Incorrect data type sent in random-in-portions')
+					return false;
+				}
+				if( typeof fin !== 'object' ){
+
+					console.error('Incorrect data type sent in random-in-portions')
+					return false;
+				}
+				if( fin.length != ini.length ){
+
+					console.error('Incorrect missmatch of array length in random-in-portions')
+					return false;
+				}
+				var pos = Math.round( Math.random() * ( ini.length - 1 ) ),
+					number = Math.random();
+				fin[pos] -= ini[pos];
+				fin[pos] *= number;
+				return ini[pos] + fin[pos];
 			},
 			shuffle : function( arr ) {
 
