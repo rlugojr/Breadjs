@@ -1,4 +1,5 @@
-/*Image took from http://www.xojo3d.com/tut015.php*/
+/*Images took from: bird.png - http://www.xojo3d.com/tut015.php
+				    blue_bird.png - http://www.wikitude.com/*/
 var env = Bread.setEnvironment({
 	'canvas' : 'id:canvas-el',
 	'width' : 800,
@@ -10,14 +11,22 @@ var bird = Bread.createThing({
 
 });
 bird.setSprite({
-	'src' : 'img/bird.png',
+	/*'src' : 'img/bird.png',
 	'width' : 531,
 	'height' : 304,
 	'frames' : 14,
 	'wcut' : 110,
 	'hcut' : 100,
 	'sx' : 2,
-	'sy' : 2
+	'sy' : 2*/
+	'src' : 'img/blue_bird.png',
+	'width' : 256,
+	'height' : 256,
+	'frames' : 16,
+	'wcut' : 64,
+	'hcut' : 64,
+	'sx' : 1,
+	'sy' : 1
 });
 /*var circle = Bread.createThing({
 	'x' : 100,
@@ -34,6 +43,7 @@ for (var i = 0,x = 0,y = 0,width = 0,height = 0; i < 12; i++) {
 	y = Bread.random(0,440);
 	width = Bread.random(0,170);
 	height = Bread.random(0,120);
+
 	rects.push(Bread.createThing({	
 			'x' : x,
 			'y' : y,
@@ -50,10 +60,20 @@ env.mousedownCanvas(function (event) {
     var recuadro= this.getBoundingClientRect();
     xob=(event.clientX - Math.round(recuadro.left));
     yob=(event.clientY - Math.round(recuadro.top));
+    if( xob < bird.x){
+		bird.initialFrame( 0 )
+		bird.endFrame( 3 )
+    }else{
+
+		bird.initialFrame( 4 )
+		bird.endFrame( 7 )
+    }
+
     bird.locate(xob,yob)
 
 });
-
+bird.initialFrame( 0 )
+bird.endFrame( 3 )
 env.animation(function() {
 
 	bird.animateSprite();
