@@ -11,14 +11,6 @@ var bird = Bread.createThing({
 
 });
 bird.setSprite({
-	/*'src' : 'img/bird.png',
-	'width' : 531,
-	'height' : 304,
-	'frames' : 14,
-	'wcut' : 110,
-	'hcut' : 100,
-	'sx' : 2,
-	'sy' : 2*/
 	'src' : 'img/blue_bird.png',
 	'width' : 256,
 	'height' : 256,
@@ -78,7 +70,7 @@ env.animation(function() {
 
 	bird.animateSprite();
 	
-	bird.follow(rects , 20)
+	bird.follow(rects , 12)
 	env.render();
 
 },1000/20)
