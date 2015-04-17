@@ -7,8 +7,8 @@ var enviroment = Bread.setEnvironment({
 	'height' : 500
 });
 var nucleus = [] , electrons = [] , protons = []
-var groupsx = {0:[220,240],1:[330,350],2:[350,370],3:[460,480],4:[220,240],5:[310,330],6:[650,670],7:[260,280]},
-	groupsy = {0:[120,140],1:[230,250],2:[100,120],3:[400,420],4:[320,340],5:[390,410],6:[120,130],7:[400,420]};
+var groupsx = {0:[220,240],1:[330,350],2:[520,550],3:[460,480],4:[220,240],5:[310,330],6:[650,670],7:[260,280]},
+	groupsy = {0:[120,140],1:[230,250],2:[260,290],3:[400,420],4:[320,340],5:[390,410],6:[120,130],7:[400,420]};
 
 for (var n = 0; n < 80 ; n++) {
 
@@ -57,9 +57,15 @@ function moveAndcollide ( bodies ) {
 			ang = ( bodies[ e2 ].y - bodies[ e ].y ) / ( bodies[ e2 ].x - bodies[ e ].x );
 			bodies[e].setFillColor("#FF0000");
 			//bodies[e2].setFillColor("#0000FF");
-			speed = bodies[e].speed ;
-			bodies[e].speed = -1 * bodies[e].speed
-			bodies[e2].speed = speed;
+			speed = bodies[e].speed;
+			if(speed >= 5){
+				bodies[e].speed = -1 * bodies[e].speed
+				bodies[e2].speed = speed;
+			}else{
+				speed = bodies[e2].speed;
+				bodies[e2].speed = -1 * bodies[e2].speed
+				bodies[e].speed = speed;
+			}
 			bodies[e].impulse(0 , Math.atan( -1 / ang), 0);
 			bodies[e2].impulse(0 , Math.atan( ang ), 0);
 		}
