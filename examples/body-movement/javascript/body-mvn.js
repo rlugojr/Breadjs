@@ -28,12 +28,10 @@ bird.setSprite({
 })*/
 
 rects = [];
-regionsx = [12,170,340,410]
-regionsy = [12,120,240,310]
 for (var i = 0,x = 0,y = 0, rx = 0, ry = 0, width = 0,height = 0; i < 12; i++) {
 
-	x = Bread.randomInPortions(regionsx[rx],regionsx[ry]);
-	y = Bread.randomInPortions(10,440);
+	x = Bread.random(20,770);
+	y = Bread.random(20,440);
 	width = Bread.random(20,170);
 	height = Bread.random(20,120);
 
