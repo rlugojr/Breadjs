@@ -185,6 +185,7 @@ Bread = (function(){
 					else{
 
 						context.save();
+						angle = draw_object[ 'alfa' ] || angle
 						context.translate( x, y );
 						context.rotate( angle )
 						context.drawImage( img, sx, sy, swidth, sheight, -( width / 2 ), -( height / 2 ), width, height );
@@ -194,6 +195,7 @@ Bread = (function(){
 				case 'sprite':
 					img = drawing['img'];
 					context.save();
+					angle = draw_object[ 'alfa' ] || angle
 					context.translate( x, y );
 					context.rotate( angle )
 					context.drawImage( img, sx, sy, swidth, sheight, -( swidth / 2 ), -( sheight / 2 ), swidth, sheight );
@@ -667,8 +669,10 @@ Bread = (function(){
 
 				var dx = 0, 
 					dy = 0;
-	            dx = xob - this.x;
-	            dy = yob - this.y;
+	            /*dx = xob - this.x;
+	            dy = yob - this.y;*/
+		        dx = ((xob - this.x) != 0) ? xob - this.x : 1;
+		        dy = ((yob - this.y) != 0) ? yob - this.y : 1;
 	            xgoes = dx / Math.abs( dx ); 
 	            ygoes = dy / Math.abs( dy );
 	            this.angle = Math.atan( Math.abs( dy ) / Math.abs( dx ) )
@@ -677,7 +681,8 @@ Bread = (function(){
 	            alfa = xgoes * alfa;
 	            xobjective = xob;
 	            yobjective = yob;
-		        this.draw_object[ 'angle' ] = this.angle
+		        this.draw_object[ 'angle' ] = this.angle;
+		        this.draw_object[ 'alfa' ] = alfa;
 			},
 			this.move = function() {
 
@@ -798,6 +803,7 @@ Bread = (function(){
 			            }
 		            }
 		            this.draw_object[ 'angle' ] = this.angle
+		            this.draw_object[ 'alfa' ] = alfa;
 		            
 			},
 			this.shapeCollision = function( objs ) {

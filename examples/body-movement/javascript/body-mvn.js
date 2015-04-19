@@ -6,27 +6,30 @@ var env = Bread.setEnvironment({
 	'height' : 480
 });
 var bird = Bread.createThing({
-	'x' : 5,
-	'y' : 5
+	'x' : 150,
+	'y' : 150
 
 });
-bird.setSprite({
-	'src' : 'img/blue_bird.png',
-	'width' : 256,
-	'height' : 256,
-	'frames' : 16,
-	'wcut' : 64,
-	'hcut' : 64,
-	'sx' : 1,
-	'sy' : 1
-});
-/*var circle = Bread.createThing({
+/*
+var circle = Bread.createThing({
 	'x' : 5,
 	'y' : 5,
 	'solid-circle' : 10,
 	'fill-color':'#0000FF'
 })*/
+spacecrft = Bread.createThing({
+	'x':5,
+	'y':5
+})
+spacecrft.setImage({
 
+	'src' : 'img/nave.png', 
+	'swidth' : 555, 
+	'sheight' : 971, 
+	'width' : 35.5, 
+	'height': 77.1, 
+	'deg' : 0
+})
 rects = [];
 for (var i = 0,x = 0,y = 0, rx = 0, ry = 0, width = 0,height = 0; i < 12; i++) {
 
@@ -44,33 +47,22 @@ for (var i = 0,x = 0,y = 0, rx = 0, ry = 0, width = 0,height = 0; i < 12; i++) {
 	env.addIt(rects[i])
 };
 
-bird.speed = 5;
-env.addIt(bird);
+spacecrft.speed = 5;
+env.addIt(spacecrft);
 env.mousedownCanvas(function (event) {
 
     var recuadro= this.getBoundingClientRect();
     xob=(event.clientX - Math.round(recuadro.left));
     yob=(event.clientY - Math.round(recuadro.top));
-    
-    if( xob < bird.x){
-		bird.initialFrame( 0 )
-		bird.endFrame( 3 )
-    }else{
-
-		bird.initialFrame( 4 )
-		bird.endFrame( 7 )
-    }
-
-    bird.locate(xob,yob)
+   
+    spacecrft.locate(xob,yob)
 
 });
-bird.initialFrame( 0 )
-bird.endFrame( 3 )
+//bird.initialFrame( 0 )
+//bird.endFrame( 3 )
 env.animation(function() {
 
-	bird.animateSprite();
-	
-	bird.follow(rects , 12)
+	spacecrft.follow(rects , 12)
 	env.render();
 
 },1000/20)
