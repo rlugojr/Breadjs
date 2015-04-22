@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+</head>
+<body>
+	<div class="col-md-10 col-md-offset-1">
+		<div class="page-header">
+			<h1>Welcome to BreadJS!</h1>
+		</div>
+		<nav>
+			<ul class="nav nav-tabs">
+			  <li role="presentation" class="menu-tp active" id="tab-home"><a href="#">Home</a></li>
+			  <li role="presentation" class="menu-tp" id="tab-guide"><a href="#">Wiki</a></li>
+			  <li role="presentation" class="menu-tp" id="tab-demos"><a href="#">Some Demos</a></li>
+			</ul>
+		</nav>
+		<div class="col-md-4 col-sm-offset-1 tab-home">
+			<h2>Breadjs</h2>
+			BreadJS is a JavaScript library for HTML5 Canvas, it provides some useful functions typically used in game development like: body collision, body movement, gravity, etc. < This Library is under MIT License.> This is a small work, recent and ready to be improved by anyone. Feel free to help!.
+		</div>
+		<div class="col-md-7 col-sm-offset-1 tab-guide">
+			<h2>Getting Started</h2>
+			The library structure is based on two kinds of objects, one is the 'Environment' Object and the other one is the 'Thing' object, the idea is to always work in function of this kind of objects, its important to highlight that this Library is intended to simplify the amount of work during game developing. Let's begin; first of all you must include the breadjs-(version).js file in your html document then you can use any of its components. You can start coding in the html document inside the script tag or do it in an external and included JavaScript file, I Recommend to do it in an external file and place there all the logic of the application; this file will act like a controller.
+		</div>
+		<div class="list-group col-md-3 col-sm-offset-1 tab-demos" style="margin-top:20px">
+		  <a href="#" class="list-group-item active">Body Movement</a>
+		  <a href="#" class="list-group-item">Chain Reaction</a>
+		  <a href="#" class="list-group-item">Line Collisions</a>
+		  <a href="#" class="list-group-item">Particles</a>
+		  <a href="#" class="list-group-item">Rectangles colliding</a>
+		  <a href="#" class="list-group-item">Sprite</a>
+		</div>
+	</div>
+	<script src="src/breadjs-0.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="examples/demo-index.js"></script>
+</body>
+
+</html>
