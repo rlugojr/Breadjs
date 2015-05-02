@@ -1,42 +1,143 @@
 <!doctype html>
 <html>
 <head>
+	<title>Bread.js</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<style type="text/css">
+		/*body {
+			background: #CCFFFF;
+		}*/
+		.primario{
+			background :#337ab7;
+			color: #FFF;
+		}
+		#presentacion{
+			z-index: -1;
+			position: absolute;
+			width: 100%;
+			opacity: 0.4;
+		}
+	</style>
 </head>
 <body>
-	<div class="col-md-10 col-md-offset-1">
-		<div class="page-header">
+	<div class="container col-md-12">
+			<nav class="navbar">
+				<ul class="nav nav-pills">
+				  <li role="presentation" class="menu-tp active" id="tab-home"><a href="#">Home</a></li>
+				  <li role="presentation" class="menu-tp" id="tab-guide"><a href="#">Developer's Guide</a></li>
+				  <li role="presentation" class="menu-tp" id="tab-demos"><a href="#">Some Demos</a></li>
+				</ul>
+			</nav>
+		<!--<div class="page-header">-->
+		<div class="col-md-12 jumbotron primario">
 			<h1>Welcome!</h1>
 		</div>
-		<nav>
-			<ul class="nav nav-tabs">
-			  <li role="presentation" class="menu-tp active" id="tab-home"><a href="#">Home</a></li>
-			  <li role="presentation" class="menu-tp" id="tab-guide"><a href="#">Developer's Guide</a></li>
-			  <li role="presentation" class="menu-tp" id="tab-demos"><a href="#">Some Demos</a></li>
-			</ul>
-		</nav>
-		<div class="col-md-4 col-sm-offset-1 tab-home">
-			<h2>Breadjs</h2>
-			BreadJS is a JavaScript library for HTML5 Canvas, it provides some useful functions typically used in game development like: body collision, body movement, gravity, etc. < This Library is under MIT License.> This is a small work, recent and ready to be improved by anyone. Feel free to help!.
+		<!--</div>-->
+		<div class="col-md-8 col-sm-offset-1 tab-home">
+			<canvas id="presentacion"></canvas>
+			<div class="panel-lejos">
+				<h2 >Breadjs</h2>
+				<div >
+					BreadJS is a JavaScript library for HTML5 Canvas, it provides some useful functions typically used in game development like: body collision, body movement, gravity, etc. < This Library is under MIT License.> This is a small work, recent and ready to be improved by anyone. Feel free to help!.
+				</div>
+			</div>
 		</div>
-		<div class="col-md-7 col-sm-offset-1 tab-guide">
-			<h2>Getting Started</h2>
-			The library structure is based on two kinds of objects, one is the 'Environment' Object and the other one is the 'Thing' object, the idea is to always work in function of this kind of objects, its important to highlight that this Library is intended to simplify the amount of work during game developing. Let's begin; first of all you must include the breadjs-(version).js file in your html document then you can use any of its components. You can start coding in the html document inside the script tag or do it in an external and included JavaScript file, I Recommend to do it in an external file and place there all the logic of the application; this file will act like a controller.
+		<div class="col-md-11 tab-guide">
+			<div class="col-md-3 col-sm-offset-1" style="margin-top:20px">
+			  
+			  	<div class="list-group-item" id="iniciando"><a href="#">Getting Started</a></div>
+				<div class="list-group-item dropdown">
+					<a id="intro-entorno" class="item-guia-entorno" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				     Environment Object
+				     <span class="caret"></span>
+				    </a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<li role="presentation" class="dropdown"><a role="menuitem" class="item-guia-entorno" id="agregar-objs">Adding Objects </a></li>
+						<li role="presentation" class="dropdown"><a role="menuitem" class="item-guia-entorno" id="animacion">Animation </a></li>
+						<li role="presentation" class="dropdown"><a role="menuitem" class="item-guia-entorno" id="click">Click </a></li>
+						<li role="presentation" class="dropdown"><a role="menuitem" class="item-guia-entorno" id="mdown">MouseDown </a></li>
+						<li role="presentation" class="dropdown"><a role="menuitem" class="item-guia-entorno" id="mmove">MouseMove </a></li>
+						<li role="presentation" class="dropdown"><a role="menuitem" class="item-guia-entorno" id="mover">MouseOver </a></li>
+						<li role="presentation" class="dropdown"><a role="menuitem" class="item-guia-entorno" id="mup">MouseUp </a></li>
+						<li role="presentation" class="dropdown"><a role="menuitem" class="item-guia-entorno" id="tstart">TouchStart </a></li>
+						<li role="presentation" class="dropdown"><a role="menuitem" class="item-guia-entorno" id="tend">TouchEnd </a></li>
+						<li role="presentation" class="dropdown"><a role="menuitem" class="item-guia-entorno" id="tmove">TouchMove </a></li>
+					</ul>
+				</div>
+				<div class="list-group-item dropdown">
+					<a class="item-guia-cosa" data-target="#" href="javascript:void(0)" id="intro-cosa" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+				     Thing object
+				     <span class="caret"></span>
+				    </a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="circulo">Circles </a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="rect">Rectangles </a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="arco">Arcs</a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="linea">Lines</a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="img">Images </a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="sprite">Sprites </a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="contexto">Context </a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="visible">Visble</a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="rotacion">Rotation </a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="gravedad">Gravity </a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="velocidad">Speed and Direction</a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="tamano">Size </a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="color">Color </a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="impulso">Impulse </a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="movimiento">Movement </a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="colision">Collision </a></li>
+						<li role="presentation" class="dropdown"><a class="item-guia-cosa" id="rebote">Bounce </a></li>
+					</ul>
+				</div>
+				<div class="list-group-item dropdown">
+					<a id="dLabel" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+				     Other Functions
+				     <span class="caret"></span>
+				    </a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					    <li role="presentation" class="dropdown"><a class="item-guia-otras" id="aleatorio">Random </a></li>
+					    <li role="presentation" class="dropdown"><a class="item-guia-otras" id="aleatorio-por">Random by portions </a></li>
+					    <li role="presentation" class="dropdown"><a class="item-guia-otras" id="barajar">Shuffle </a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-8 contenedor-guia">
+				<div class="panel panel-primary panel-lejos">
+					<h2 class="panel-heading">Getting Started</h2>
+					<div class="panel-body">
+						The library structure is based on two kinds of objects, one is the 'Environment' Object and the other one is the 'Thing' object, the idea is to always work in function of this kind of objects, its important to highlight that this Library is intended to simplify the amount of work during game developing. Let's begin; first of all you must include the breadjs-(version).js file in your html document then you can use any of its components. You can start coding in the html document inside the script tag or do it in an external and included JavaScript file, I Recommend to do it in an external file and place there all the logic of the application; this file will act like a controller.
+					</div>
+				</div>
+			</div>
+			<!--<div class="panel panel-primary panel-lejos">
+				<h2 class="panel-heading">addIt( Thing )</h2>
+					<div class="panel-body">
+					The library structure is based on two kinds of objects, one is the 'Environment' Object and the other one is the 'Thing' object, the idea is to always work in function of this kind of objects, its important to highlight that this Library is intended to simplify the amount of work during game developing. Let's begin; first of all you must include the breadjs-(version).js file in your html document then you can use any of its components. You can start coding in the html document inside the script tag or do it in an external and included JavaScript file, I Recommend to do it in an external file and place there all the logic of the application; this file will act like a controller.
+				</div>
+			</div>-->
 		</div>
-		<div class="list-group col-md-3 col-sm-offset-1 tab-demos" style="margin-top:20px">
-		  <a href="#" class="list-group-item active">Body Movement</a>
-		  <a href="#" class="list-group-item">Chain Reaction</a>
-		  <a href="#" class="list-group-item">Line Collisions</a>
-		  <a href="#" class="list-group-item">Particles</a>
-		  <a href="#" class="list-group-item">Rectangles colliding</a>
-		  <a href="#" class="list-group-item">Sprite</a>
+		<div class="col-md-12 tab-demos">
+			<div class="list-group col-md-3" style="margin-top:20px">
+			  <a href="#" class="demo-item list-group-item active" id="movimiento">Body Movement</a>
+			  <a href="#" class="demo-item list-group-item" id="cadena">Chain Reaction</a>
+			  <a href="#" class="demo-item list-group-item" id="colsion-linea">Line Collisions</a>
+			  <a href="#" class="demo-item list-group-item" id="particulas">Particles</a>
+			  <a href="#" class="demo-item list-group-item" id="colision">Rectangles colliding</a>
+			  <a href="#" class="demo-item list-group-item" id="sprite">Sprite</a>
+			</div>
+			<div class="col-md-7">
+				<div id="titulo-instructivo" class="label label-primary">Click anywhere in the screen</div>
+				<iframe src="examples/body-movement/body-movement.html" style="margin-top:20px;width:800px;height:480px">
+				</iframe>
+			</div>
 		</div>
 	</div>
 	<script src="src/breadjs-0.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="examples/demo-index.js"></script>
+	<script src="examples/home-js.js"></script>
 </body>
 
 </html>
