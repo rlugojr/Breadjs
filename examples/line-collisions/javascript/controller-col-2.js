@@ -9,6 +9,50 @@ var xob = 100,yob = 12;
 		'solid-circle':3,
 		'fill-color' : '#777'
 	});
+	circ2 = Bread.createThing({
+		x:20,
+		y:100,
+		//'solid-rectangle':[45 , 132],
+		'solid-circle':3,
+		'fill-color' : '#777'
+	});
+	circ3 = Bread.createThing({
+		x:35,
+		y:90,
+		//'solid-rectangle':[45 , 132],
+		'solid-circle':3,
+		'fill-color' : '#777'
+	});
+	circ4 = Bread.createThing({
+		x:50,
+		y:105,
+		//'solid-rectangle':[45 , 132],
+		'solid-circle':3,
+		'fill-color' : '#777'
+	});
+	circ5 = Bread.createThing({
+		x:45,
+		y:90,
+		//'solid-rectangle':[45 , 132],
+		'solid-circle':3,
+		'fill-color' : '#777'
+	});
+
+	circ6 = Bread.createThing({
+		x:10,
+		y:115,
+		//'solid-rectangle':[45 , 132],
+		'solid-circle':3,
+		'fill-color' : '#777'
+	});
+	circ7 = Bread.createThing({
+		x:0,
+		y:125,
+		//'solid-rectangle':[45 , 132],
+		'solid-circle':3,
+		'fill-color' : '#777'
+	});
+	circles = [circ1,circ2,circ3,circ4,circ5,circ6,circ7]
 	lin = Bread.createThing({
 		x:0,
 		y:310,
@@ -61,7 +105,13 @@ var xob = 100,yob = 12;
 	});
 
 	env.addIt(lin);
-	env.addIt(circ1);
+	env.addIt(circles[0]);
+	env.addIt(circles[1]);
+	env.addIt(circles[2]);
+	env.addIt(circles[3]);
+	env.addIt(circles[4]);
+	env.addIt(circles[5]);
+	env.addIt(circles[6]);
 	//env.addIt(rec1);
 	env.addIt(rec5);
 	var colisions = []
@@ -77,9 +127,23 @@ var xob = 100,yob = 12;
 		yl -= 0.05;
 		lin.setLinePoint([xl,yl],2)
 		vel = circ1.getSpeed();
-		colisions = lin.pointCollision([ circ1.x , circ1.y ]);
-		if( colisions.length > 0 ){
-			circ1.bounce( 0.5, -1)
+		colisions = lin.pointCollision([ circles[0].x , circles[0].y ],
+									   [ circles[1].x , circles[1].y ],
+									   [ circles[2].x , circles[2].y ],
+									   [ circles[3].x , circles[3].y ],
+									   [ circles[4].x , circles[4].y ],
+									   [ circles[5].x , circles[5].y ],
+									   [ circles[6].x , circles[6].y ]);
+		//xl+=1;
+		//yl+=1;
+		//lin.setLinePoint( [xl,yl] , 2 )
+		//if( colisions.length > 0 ){
+			//circ1.bounce( 0.22, -0.78)
+		
+		for(b in colisions){
+			cr = colisions[b] - 1;
+			//console.log('cr '+cr)
+			circles[cr].bounce( 0.22, -0.78)
 		}
 		angle += 0.7
 		/*rec4.x = lin2.xtest;

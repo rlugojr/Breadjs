@@ -1065,8 +1065,9 @@ Bread = (function(){
 						console.error('Invalid amount of coordinates!')
 						return false;
 					}
-					xe1 = arguments[ ind ][0] , ye1 = arguments[ ind ][1];
 
+					xe1 = arguments[ ind ][0] , ye1 = arguments[ ind ][1];
+					//console.log(xe1+' '+ye1)
 					if ( iscircl ){
 
 						deterx = Math.abs( x1 - xe1 );
@@ -1143,7 +1144,7 @@ Bread = (function(){
 
 							p = ( ye1 - y1 ) * ( y2 - ye1 ) > 0;
 							p = p && ( xe1 - x1 ) * ( x2 - xe1 ) > 0;
-
+							//console.log(x2+' '+y2)
 							if( ma == 0 || ma == ( Math.PI / 2 ) ){
 
 								p = ( ye1 - y1 ) * ( y2 - ye1 ) > 0;
@@ -1155,9 +1156,9 @@ Bread = (function(){
 							closeness -= 0.03
 							m1 += Number( ma == 0 );
 							ma += Number( ma == 0 );
-
+							
 							if( p ) {
-
+									
 								flag = ( m1 / ma >= closeness && m1 / ma <= 1 ) || ( ma / m1 >= closeness && ma / m1 <= 1 );
 								break;
 							}
@@ -1167,8 +1168,9 @@ Bread = (function(){
 						}
 					}
 
-					if( flag )
+					if( flag ){
 						touched.push( parseInt( ind ) + 1 );
+					}
 
 				}
 				return touched;
