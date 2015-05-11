@@ -352,7 +352,7 @@ var demos = {
 					"titulo":""},
 	"particulas" : {"url":"examples/particles/particles.html",
 					"titulo":""},
-	"colision" : {"url":"examples/rectangles-colliding/rectangles-colliding.html",
+	"colision" : {"url":"examples/rectangles-colliding/rectangles-collis.html",
 					"titulo":""},
 	"sprite" : {"url":"examples/sprite-demo/sprite-demo.html",
 				"titulo":""}
