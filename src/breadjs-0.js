@@ -301,7 +301,7 @@ Bread = (function(){
 				animate = function() {
 					this.life = setTimeout( reality, frate );
 				};
-				/*The anime method is called*/
+				/*The animate method is called*/
 				animate();
 			},
 			this.mousedownCanvas = function( ev ) {
