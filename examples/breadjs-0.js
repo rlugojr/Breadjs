@@ -1158,7 +1158,7 @@ Bread = (function(){
 							ma += Number( ma == 0 );
 							
 							if( p ) {
-								console.log(p)	
+									
 								flag = ( m1 / ma >= closeness && m1 / ma <= 1 ) || ( ma / m1 >= closeness && ma / m1 <= 1 );
 								break;
 							}
