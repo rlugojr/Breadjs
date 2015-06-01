@@ -47,7 +47,8 @@ function moveAndcollide ( bodies ) {
 		for( t in collide ) {
 
 			e2 = collide[t] + e;
-			bodies[e].bounce( 1.15, -0.035 )
+			yb = Bread.random(-0.345,-0.045)
+			bodies[e].bounce( 0.05, yb )
 			//bodies[e2].bounce( -1.15, 0.035 )
 		}
 		collide = [];
