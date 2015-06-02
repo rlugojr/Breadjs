@@ -1158,7 +1158,11 @@ Bread = (function(){
 							ma += Number( ma == 0 );
 							
 							if( p ) {
+<<<<<<< HEAD
 								
+=======
+									
+>>>>>>> 65611a6562da778fb09af12d35a089b1ebd025f8
 								flag = ( m1 / ma >= closeness && m1 / ma <= 1 ) || ( ma / m1 >= closeness && ma / m1 <= 1 );
 								break;
 							}
