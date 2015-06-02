@@ -27,7 +27,7 @@ var xob = 100,yob = 12,num_circ = 390,circles=[];
 		'canvas' :'id:entorno',
 		'width' : 800,
 		'height' : 460,
-		'set-gravity':[0 , 0.02]
+		'set-gravity':[0 , 0.03]
 	});
 
 	env.mousedownCanvas(function ( evento ) {
@@ -48,7 +48,7 @@ var xob = 100,yob = 12,num_circ = 390,circles=[];
 				x:x,
 				y:y,
 				//'solid-rectangle':[45 , 132],
-				'solid-circle':2.5,
+				'solid-circle':1.5,
 				'fill-color' : '#777'
 			}))
 			env.addIt(circles[n])
@@ -61,7 +61,8 @@ var xob = 100,yob = 12,num_circ = 390,circles=[];
 	env.animation( function() {
 
 		lin.unSetGravity();
-		//rec1.setRotationDeg(angle - 30)
+		//lin.hide()
+		
 		xl -= 0.075;
 		yl -= 0.075;
 		x2l += 0.1;
