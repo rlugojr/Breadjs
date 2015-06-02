@@ -73,7 +73,7 @@ var xob = 100,yob = 12,num_circ = 390,circles=[];
 			colisions = lin.pointCollision([circles[n].x , circles[n].y])
 
 			if(colisions.length > 0)
-				circles[n].bounce( 0.09, -2.1);
+				circles[n].bounce( 0.09, -0.07);
 
 		};
 		

@@ -1153,7 +1153,7 @@ Bread = (function(){
 							}
 							/*Correction for the comparison*/
 							closeness = ( ma != 0 && ma != ( Math.PI / 2 ) ) ? 1 - ( ( Math.PI / 2 ) / ( ma % ( Math.PI / 2 ) ) ) / 100 : 1;
-							closeness -= 0.035
+							closeness -= 0.03
 							m1 += Number( ma == 0 );
 							ma += Number( ma == 0 );
 							
