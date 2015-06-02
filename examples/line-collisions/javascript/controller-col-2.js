@@ -56,7 +56,7 @@ var xob = 100,yob = 12,num_circ = 390,circles=[];
 	var colisions = []
 	var angle = -40;
 	directions = [];
-	var xl = 335 , yl = 280, x2l = 600 , y2l = 310;
+	var xl = 335 , yl = 280, x2l = 600 , y2l = 310, by = Bread.random(-0.07,-0.7);
 	//circ1.setCloseness( 0.9 )
 	env.animation( function() {
 
@@ -71,9 +71,9 @@ var xob = 100,yob = 12,num_circ = 390,circles=[];
 
 		for (var n = 0; n < num_circ; n++) {
 			colisions = lin.pointCollision([circles[n].x , circles[n].y])
-
+			by = Bread.random(-0.07,-1)
 			if(colisions.length > 0)
-				circles[n].bounce( 0.09, -0.07);
+				circles[n].bounce( 0.09, by);
 
 		};
 		
