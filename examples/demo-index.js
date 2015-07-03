@@ -240,7 +240,8 @@ html_thing = {
 											  'value thru this method. It will modify its angle according to the objective.<br>'+
 											  '<code>thing.locate( 100,200 )</code><br>'+
 											  '<h4>follow( array_of_objects , size )</h4>'+
-											  'Similar to the move function, but it provides an interesting feature, if a '+
+											  'Before use follow call the locate method, otherwise it won\'t works. Similar to the move function,'+
+											  ' but it provides an interesting feature, if a '+
 											  'rectangular body stands in the path of the body in movement, this one will detour, '+
 											  'trying to reach the objective. In the figure you can see the function performance;' +
 											  'the dotted line represents the trajectory that the body would follow if the move '+
@@ -250,7 +251,7 @@ html_thing = {
 									          'rectangular objects and the 2) the size of the object, this is the range in which the '+
 											  'object will \'touch\' the object and detour, this second argument is optional<br>'+
 											  '<code>thing.follow( [obj1,obj2,obj3....,objn] , size )</code>'+
-											  '<h5>Important Note: When calling this function the object ONLY recognizes rectangular shapes with 0 angle. I expect it will be improved; any help would be really appreciated.</h5><br>'+
+											  '<h4>Important Note: When calling this function the object ONLY recognizes rectangular shapes with 0 angle. I expect it will be improved; any help would be really appreciated.</h4><br>'+
 											  '<img class="img-responsive" src=\'follow-exp.png\'>'
 
 					},

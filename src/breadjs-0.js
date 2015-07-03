@@ -731,12 +731,12 @@ Bread = (function(){
 		        ytemporalobj = yobjective;
 		        	
 					if( dist > 0 ) {
-
+						/*If the distance is greater than zero, first calculate the speed components in x and y*/
 		               	xspeed = ( xgoes * Math.cos( this.angle ) * this.speed );
 						yspeed = ( ygoes * Math.sin( this.angle ) * this.speed );
 						
 		                for ( ind in objs ) {
-
+                            /*Iterates over all the objects*/
 		                    xobject1 = objs[ ind ].x, yobject1 = objs[ ind ].y;
 		                    
 							ewidth = objs[ ind ].draw_object[ 'width' ] || 0;
@@ -746,11 +746,12 @@ Bread = (function(){
 		                    ycomp = this.y + ( ygoes * size );
 							xobject2 = xobject1 + ewidth;
 							yobject2 = yobject1 + eheight;
-		                    this.xtest = xcomp
-		                    this.ytest = ycomp
+		                    /*this.xtest = xcomp
+		                    this.ytest = ycomp*/
 
 							p = ( xcomp - xobject1 ) * ( xobject2 - xcomp ) > 0;
 							p = p && ( ycomp - yobject1 ) * ( yobject2 - ycomp ) > 0;
+							/*If the x coordinate is inside the horizontal dimension of the rectangle, change the direction*/
 		                    if ( p ) {
 
 	                            this.y -= ( ygoes * Math.sin( this.angle ) * this.speed );
@@ -767,6 +768,7 @@ Bread = (function(){
 
 		                    q = ( ycomp - yobject1 ) * ( yobject2 - ycomp ) > 0;
 		                    q = q && ( xcomp - xobject1 ) * ( xobject2 - xcomp ) > 0;
+		                    /*If the y coordinate is inside the vertical dimension of the rectangle, change the direction*/
 		                    if ( q ) {
 
 	                            this.x -= ( xgoes * Math.cos( this.angle ) * this.speed );
@@ -1022,7 +1024,7 @@ Bread = (function(){
 				return touched;
 			},
 			this.pointCollision = function( ) {
-
+                /*It tells if the point is colliding*/
 				var fig = this.draw_object['figure'];
 				var x1 = this.x,
 					y1 = this.y,
@@ -1065,6 +1067,7 @@ Bread = (function(){
 						console.error('Invalid amount of coordinates!')
 						return false;
 					}
+					/*Get the coordinates of the input objects*/
 					xe1 = arguments[ ind ][0] , ye1 = arguments[ ind ][1];
 
 					if ( iscircl ){
@@ -1384,58 +1387,56 @@ Bread = (function(){
 				return new Environment( element, env );				
 			},
 			createThing : function( thing ) {
+                /*Create e new a instance of the 'thing' object*/
+                if( typeof thing !== 'object' ) {
 
-				if( typeof thing !== 'object' ) {
+                    console.error('Incorrect data type sent in create-thing')
+                    return false;
+                }
 
-					console.error('Incorrect data type sent in create-thing')
-					return false;
-				}
-
-				return new Thing ( thing );
+                return new Thing ( thing );
 			},
 			random : function( ini , fin ) {
+                /*Returns a random number between thi ini number and the fin number*/
+                if( isNaN(ini) ){
 
-				if( isNaN(ini) ){
+                    console.error('Incorrect data type sent in random')
+                    return false;
+                }
+                if( isNaN(fin) ){
 
-					console.error('Incorrect data type sent in random')
-					return false;
-				}
-				if( isNaN(fin) ){
+                    console.error('Incorrect data type sent in random')
+                    return false;
+                }
 
-					console.error('Incorrect data type sent in random')
-					return false;
-				}
-
-				var number = Math.random();
-				fin -= ini;
-				fin *= number;
-				return ini + fin;
+                var number = Math.random();
+                fin -= ini;
+                fin *= number;
+                return ini + fin;
 			},
-			randomInPortions : function( ini , fin ) {
-
-				if( typeof ini !== 'object' ){
+			randomInPortions : function() {
+                /*Returns a random number between a specific range selected from the function arguments*/
+				var pos = Math.round( Math.random() * ( arguments.length - 1 ) ),
+					number = Math.random(),
+					range = arguments[pos];
+				
+				if( isNaN(range[0]) ){
 
 					console.error('Incorrect data type sent in random-in-portions')
 					return false;
 				}
-				if( typeof fin !== 'object' ){
+				if( isNaN(range[1]) ){
 
 					console.error('Incorrect data type sent in random-in-portions')
 					return false;
 				}
-				if( fin.length != ini.length ){
-
-					console.error('Incorrect missmatch of array length in random-in-portions')
-					return false;
-				}
-				var pos = Math.round( Math.random() * ( ini.length - 1 ) ),
-					number = Math.random();
-				fin[pos] -= ini[pos];
-				fin[pos] *= number;
-				return ini[pos] + fin[pos];
+				/*It uses the random formula*/
+				range[1] -= range[0];
+				range[1] *= number;
+				return range[1] + range[0];
 			},
 			shuffle : function( arr ) {
-
+                /*Returns the shuffled version of the input array*/
 				var elm = 0,
 					stack = [];
 				while ( arr.length > 0 ) {
