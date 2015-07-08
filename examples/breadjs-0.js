@@ -4,157 +4,156 @@
  * Licensed MIT
  * Date: 2015-02-20
  *!--------------------------------------------------!
- */
- 
+*/
+
 Bread = (function(){
-	/*Main Bread object*/
-	/*Reference to check the selector*/
-	var selexpr = /(^id:|^class:|^nth:)(?=\w)/;
+    /*Main Bread object*/
+    /*Reference to check the selector*/
+    var selexpr = /(^id:|^class:|^nth:)(?=\w)/;
 
-	/*Main enviroment object*/
-	var Environment = function ( elem, env ) {
+    /*Main enviroment object*/
+    var Environment = function ( elem, env ) {
 
-		return new Environment.methods.init( elem, env );
-	}
+        return new Environment.methods.init( elem, env );
+    }
 
-	/*Methods of the enviroment*/
-	Environment.methods = Environment.prototype =  {
-		init_object : {},
-		/*The initialize function of the environment methods object*/
-		init: function( elem, env ) {
+    /*Methods of the enviroment*/
+    Environment.methods = Environment.prototype =  {
+        init_object : {},
+        /*The initialize function of the environment methods object*/
+        init: function( elem, env ) {
 
-			Environment.methods.init_object = new Environment.methods.outerObject();
-			Environment.methods.init_object.enviroment_element = elem;
+            Environment.methods.init_object = new Environment.methods.outerObject();
+            Environment.methods.init_object.enviroment_element = elem;
 
-			for (var fun in env){
-				/*Call the methods in the constructor*/
-				switch (fun){
-					case 'set-gravity':
-					 Environment.methods.setGravity( env[fun] );
-					 break;
-					case 'width':
-					 Environment.methods.setWidth( env[fun] );
-					 break;
-					case 'height':
-					 Environment.methods.setHeight( env[fun] );
-					 break;
-					case 'canvas':
-					 /*Nothing to do*/
-					 break;
-					default:
-						console.error('There is an incorrect initialization of the enviroment!');
-						return false;
-				}
-			}
-			/*Return the convinient Environment object*/
-			return Environment.methods.init_object;
-		},
-		setGravity : function( acce ) {
-			/*Set a gravity for all the objects existing in the enviroment*/
-			if (typeof acce != 'object'){
-				console.error('Invalid type of argument in set-gravity!');
-				return false;
-			}
+            for (var fun in env){
+                /*Call the methods in the constructor*/
+                switch (fun){
+                    case 'set-gravity':
+                     Environment.methods.setGravity( env[fun] );
+                     break;
+                    case 'width':
+                     Environment.methods.setWidth( env[fun] );
+                     break;
+                    case 'height':
+                     Environment.methods.setHeight( env[fun] );
+                     break;
+                    case 'canvas':
+                     /*Nothing to do*/
+                     break;
+                    default:
+                     console.error('There is an incorrect initialization of the enviroment!');
+                     return false;
+                }
+            }
+            /*Return the convinient Environment object*/
+            return Environment.methods.init_object;
+        },
+        setGravity : function( acce ) {
+            /*Set a gravity for all the objects existing in the enviroment*/
+            if (typeof acce != 'object'){
+                console.error('Invalid type of argument in set-gravity!');
+                return false;
+            }
 
-			Environment.methods.init_object.xgravity = acce[0];
-			Environment.methods.init_object.ygravity = acce[1];
-		},
-		setWidth : function( wid ) {
-			/*Set the width of the environment*/
-			Environment.methods.init_object.enviroment_element.width = wid;
-		},
-		setHeight : function( hei ) {
-			/*Set the height of the environment*/
-			Environment.methods.init_object.enviroment_element.height =  hei;
-		},
-		fall : function( set ,accx, accy) {
-			/*This method accelerates the 'Things' according to the environment gravity*/
-			for( var ind in set){
-				var thing = set[ind];
-				thing.x += thing.xfallspeed, thing.xfallspeed += accx;
-				thing.y += thing.yfallspeed, thing.yfallspeed += accy;
-			}
-			return set;
-		},
-		setFrameRate : function( frat ) {
-			/*Set the frame rate of the animation*/
-			Environment.methods.init_object.frate = frat;
-		},
-		stickLines : function( thi ) {
-			/*Internal method for consolidating line objects*/
-			if( thi.draw_object['figure'] == 'line' ){
+            Environment.methods.init_object.xgravity = acce[0];
+            Environment.methods.init_object.ygravity = acce[1];
+        },
+        setWidth : function( wid ) {
+            /*Set the width of the environment*/
+            Environment.methods.init_object.enviroment_element.width = wid;
+        },
+        setHeight : function( hei ) {
+            /*Set the height of the environment*/
+            Environment.methods.init_object.enviroment_element.height =  hei;
+        },
+        fall : function( set ,accx, accy) {
+            /*This method accelerates the 'Things' according to the environment gravity*/
+            for( var ind in set ){
+                var thing = set[ind];
+                thing.x += thing.xfallspeed, thing.xfallspeed += accx;
+                thing.y += thing.yfallspeed, thing.yfallspeed += accy;
+            }
+            return set;
+        },
+        setFrameRate : function( frat ) {
+            /*Set the frame rate of the animation*/
+            Environment.methods.init_object.frate = frat;
+        },
+        stickLines : function( thi ) {
+            /*Internal method for consolidating line objects*/
+            if( thi.draw_object['figure'] == 'line' ){
 
-				for(var lin in thi.draw_object['poi'] ){
-					lcords = thi.draw_object['poi'][lin];
-					lcords[0] += thi.xfallspeed; lcords[1] += thi.yfallspeed;
-				}
-			}
-			return thi;
-		},
-		draw : function( context, draw_object, x, y ) {
-			/*It draws evrything according to its type*/
-			if( typeof draw_object != 'object' ||  typeof x != 'number' ||  typeof y != 'number'){
-				console.error('Invalid input on render canvas!');
-				return false;
-			}
-			var context = context,
-				drawing = draw_object,
-				lcords = [],
-				figure = drawing['figure'],
-				img = [],
-				linew = drawing['line-width'] || 1,
-				linecolor = draw_object['line-color'] || '#000';
-			/*Numeric data type*/
-			var radius = 0,
-				//angle = 0,
-				sangle = 0,
-				eangle = 0,
-				counterclock = false,
-				width = drawing['width'],
-				height = drawing['height'],
-				swidth = drawing['swidth'],
-				sheight = drawing['sheight'],
-				angle = drawing['angle'] || 0;
-				x = x,
-				y = y,
-				sx = drawing['sx'] || 0,
-				sy = drawing['sy'] || 0,
-				Pi = 2 * Math.PI;//Constant of Pi
+                for(var lin in thi.draw_object['poi'] ){
+                    lcords = thi.draw_object['poi'][lin];
+                    lcords[0] += thi.xfallspeed; lcords[1] += thi.yfallspeed;
+                }
+            }
+            return thi;
+        },
+        draw : function( context, draw_object, x, y ) {
+            /*It draws evrything according to its type*/
+            if( typeof draw_object != 'object' ||  typeof x != 'number' ||  typeof y != 'number'){
+                console.error('Invalid input on render canvas!');
+                return false;
+            }
+            var context = context,
+                drawing = draw_object,
+                lcords = [],
+                figure = drawing['figure'],
+                img = [],
+                linew = drawing['line-width'] || 1,
+                linecolor = draw_object['line-color'] || '#000';
+            /*Numeric data type*/
+            var radius = 0,
+                sangle = 0,
+                eangle = 0,
+                counterclock = false,
+                width = drawing['width'],
+                height = drawing['height'],
+                swidth = drawing['swidth'],
+                sheight = drawing['sheight'],
+                angle = drawing['angle'] || 0;
+                x = x,
+                y = y,
+                sx = drawing['sx'] || 0,
+                sy = drawing['sy'] || 0,
+                Pi = 2 * Math.PI;//Constant of Pi
 
-			if(context == ''){
-				console.error('Canvas context is not defined');
-				return false;
-			}	
-			context.beginPath();
-			context.lineWidth = linew;
-			context.strokeStyle = linecolor;
-			
-			switch (figure){
-				case 'solid-circle':
-					radius = drawing['radius'];
-					fillcolor = drawing['fill-color'] || '#000';
-					context.arc( x, y, radius, 0, Pi);
-					context.fillStyle = fillcolor;
-					context.fill();
-					break;
-				case 'solid-rectangle':
-					width = drawing['width'];
-					height = drawing['height'];
-					fillcolor = drawing['fill-color'] || '#000';
-					context.fillStyle = fillcolor;
-					context.save();
-					context.beginPath();
-					context.translate( x + ( width / 2 ) , y + ( height / 2 ) );
-					context.rotate( angle );
-					context.fillRect( -width / 2 , -height / 2, width, height);
-					context.restore()
-					break;
-				case 'circle':
-					radius = drawing['radius'];
-					context.arc( x, y, radius, 0, Pi);
-					break;
-				case 'arc' :
-					radius = drawing['radius'];
+            if(context == ''){
+                console.error('Canvas context is not defined');
+                return false;
+            }
+            context.beginPath();
+            context.lineWidth = linew;
+            context.strokeStyle = linecolor;
+
+            switch (figure){
+                case 'solid-circle':
+                    radius = drawing['radius'];
+                    fillcolor = drawing['fill-color'] || '#000';
+                    context.arc( x, y, radius, 0, Pi);
+                    context.fillStyle = fillcolor;
+                    context.fill();
+                    break;
+                case 'solid-rectangle':
+                    width = drawing['width'];
+                    height = drawing['height'];
+                    fillcolor = drawing['fill-color'] || '#000';
+                    context.fillStyle = fillcolor;
+                    context.save();
+                    context.beginPath();
+                    context.translate( x + ( width / 2 ) , y + ( height / 2 ) );
+                    context.rotate( angle );
+                    context.fillRect( -width / 2 , -height / 2, width, height);
+                    context.restore()
+                    break;
+                case 'circle':
+                    radius = drawing['radius'];
+                    context.arc( x, y, radius, 0, Pi);
+                    break;
+                case 'arc' :
+                    radius = drawing['radius'];
 					sangle = drawing['sangle'];
 					eangle = drawing['eangle'];
 					counterclock = ( typeof drawing['counterclock'] == 'boolean' ) ? drawing['counterclock'] : counterclock ;
@@ -778,6 +777,7 @@ Bread = (function(){
 	                            dodge = objectivechange = true;
 					                
 		                    }
+
 		                }
 
 		                if( objectivechange ) {
@@ -1426,7 +1426,7 @@ Bread = (function(){
 				}
 				if( fin.length != ini.length ){
 
-					console.error('Incorrect missmatch of array length in random-in-portions')
+					console.error('Incorrect, missmatch of array length in random-in-portions')
 					return false;
 				}
 				var pos = Math.round( Math.random() * ( ini.length - 1 ) ),

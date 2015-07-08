@@ -44,6 +44,7 @@ for (var i = 0,x = 0,y = 0, rx = 0, ry = 0, width = 0,height = 0; i < 12; i++) {
 			'solid-rectangle':[width,height]
 		})
 	);
+	//rects[i].setRotationDeg(23)
 	env.addIt(rects[i])
 };
 
