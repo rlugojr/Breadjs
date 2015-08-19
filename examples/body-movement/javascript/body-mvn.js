@@ -1,5 +1,4 @@
-/*Images took from: bird.png - http://www.xojo3d.com/tut015.php
-				    blue_bird.png - http://www.wikitude.com/*/
+/*Images took from: bird.png - http://www.xojo3d.com/tut015.php*/
 var env = Bread.setEnvironment({
 	'canvas' : 'id:canvas-el',
 	'width' : 800,
@@ -30,7 +29,8 @@ spacecrft.setImage({
 	'height': 77.1, 
 	'deg' : 0
 })
-rects = [];
+rects = [];//randomInPortions
+xposits = [[20,770]];
 for (var i = 0,x = 0,y = 0, rx = 0, ry = 0, width = 0,height = 0; i < 12; i++) {
 
 	x = Bread.random(20,770);
