@@ -1,6 +1,6 @@
 /*Numeric values*/
 var xv = 50, yv = 50, speed = 2, Pi = Math.PI, angle = Pi/3.1/*Bread.random( Pi / 6, Pi / 3)*/, frc_sense = 1, g = 0;
-/*Environment*/
+/*Environment*
 var enviroment = Bread.setEnvironment({
 	'canvas' : 'id:presentacion',
 	'width' : 750,
@@ -34,7 +34,7 @@ enviroment.animation( function() {
 	enviroment.render();
 	moveAndcollide( nucleus );
 	boundingBox( nucleus );
-}, 1000/36 );
+}, 1000/36 );*/
 function impulseBody ( bodies ) {
 	var l = bodies.length;
 	for (var e = 0; e < l; e++) 

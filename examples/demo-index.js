@@ -306,7 +306,7 @@ html_otras = {
 			}
 }
 $("#iniciando").mousedown(function() {
-	$(".contenedor-guia").html('<div class="panel panel-primary panel-lejos">'+
+	$(".contenedor-guia").html('<div class="panel-lejos primario">'+
 									'<h2 class="panel-heading">Getting Started</h2>'+
 									'<div class="panel-body">'+
 										'The library structure is based on two kinds of objects, one is the \'Environment\' Object and the other one is the \'Thing\' object, the idea is to always '+

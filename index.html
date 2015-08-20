@@ -5,11 +5,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 	<style type="text/css">
-		/*body {
-			background: #CCFFFF;
-		}*/
+		body {
+			background: #333399;
+			padding-top: 70px;
+		}
 		.primario{
-			background :#337ab7;
+			/*background :#337ab7;*/
 			color: #FFF;
 		}
 		#presentacion{
@@ -22,24 +23,24 @@
 </head>
 <body>
 	<div class="container col-md-12">
-			<nav class="navbar">
-				<ul class="nav nav-pills">
-				  <li role="presentation" class="menu-tp active" id="tab-home"><a href="#">Home</a></li>
-				  <li role="presentation" class="menu-tp" id="tab-guide"><a href="#">Developer's Guide</a></li>
-				  <li role="presentation" class="menu-tp" id="tab-demos"><a href="#">Some Demos</a></li>
-				</ul>
-			</nav>
-		<!--<div class="page-header">-->
-		<div class="col-md-12 jumbotron primario">
+		<nav class="navbar navbar-fixed-top">
+			<ul class="nav nav-pills">
+			  <li role="presentation" class="menu-tp active" id="tab-home"><a href="#">Home</a></li>
+			  <li role="presentation" class="menu-tp" id="tab-guide"><a href="#">Developer's Guide</a></li>
+			  <li role="presentation" class="menu-tp" id="tab-demos"><a href="#">Some Demos</a></li>
+			</ul>
+		</nav>
+		<!--<div class="page-header">
+		<div class="col-md-12 primario">
 			<h1>Welcome!</h1>
-		</div>
+		</div>-->
 		<!--</div>-->
-		<div class="col-md-8 col-sm-offset-1 tab-home">
+		<div class="col-md-8 col-sm-offset-1 tab-home primario">
 			<canvas id="presentacion"></canvas>
 			<div class="panel-lejos">
-				<h2 >Breadjs</h2>
+				<h2 > Welcome to Breadjs</h2>
 				<div >
-					BreadJS is a JavaScript library for HTML5 Canvas, it provides some useful functions typically used in game development like: body collision, body movement, gravity, etc. < This Library is under MIT License.> This is a small work, recent and ready to be improved by anyone. Feel free to help!.
+					BreadJS is a JavaScript library for HTML5 Canvas, it provides some useful functions typically used in game development like: body collision, body movement, gravity, etc. Is easy to understand and HTML5 Canvas oriented ( not SVG ) This Library is under MIT License.
 				</div>
 			</div>
 		</div>
@@ -102,8 +103,8 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-8 contenedor-guia">
-				<div class="panel panel-primary panel-lejos">
+			<div class="col-md-8 contenedor-guia primario">
+				<div class="panel-lejos">
 					<h2 class="panel-heading">Getting Started</h2>
 					<div class="panel-body">
 						The library structure is based on two kinds of objects, one is the 'Environment' Object and the other one is the 'Thing' object, the idea is to always work in function of this kind of objects, its important to highlight that this Library is intended to simplify the amount of work during game developing. Let's begin; first of all you must include the breadjs-(version).js file in your html document then you can use any of its components. You can start coding in the html document inside the script tag or do it in an external and included JavaScript file, I Recommend to do it in an external file and place there all the logic of the application; this file will act like a controller.
